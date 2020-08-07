@@ -52,7 +52,6 @@ var kidsWithCandies = function(candies, extraCandies) {
     }
   }
 
-  console.log(result);
   return result;
 };
 
