@@ -18,23 +18,34 @@ Output: 5->4->3->2->1->NULL
  * @param {ListNode} head
  * @return {ListNode}
  */
+// Iterative
+// var reverseList = function(head) {
+//   // let list = [];
+//   // if (!head) return head;
+  
+//   // list.push(new ListNode(head.val));
+
+//   // while (head.next) {
+//   //   head = head.next;
+//   //   list.push(new ListNode(head.val));
+//   // }
+
+//   // list.reverse();
+  
+//   // for (let i = 0; i < list.length - 1; i++) {
+//   //   let node = list[i];
+//   //   node.next = list[i+1];
+//   // }
+  
+//   // return list[0];
+// };
+
+// Recursion
 var reverseList = function(head) {
-  let list = [];
-  if (!head) return head;
-  
-  list.push(new ListNode(head.val));
+  if (!head || !head.next) return head;
 
-  while (head.next) {
-    head = head.next;
-    list.push(new ListNode(head.val));
-  }
-
-  list.reverse();
-  
-  for (let i = 0; i < list.length - 1; i++) {
-    let node = list[i];
-    node.next = list[i+1];
-  }
-  
-  return list[0];
+  let newHead = reverseList(head.next);
+  head.next.next = head;
+  head.next = null;
+  return newHead;
 };
