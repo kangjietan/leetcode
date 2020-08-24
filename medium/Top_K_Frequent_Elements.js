@@ -32,7 +32,7 @@ var topKFrequent = function(nums, k) {
     }
   });
   
-  let keys = Object.keys(hash);
+  // let keys = Object.keys(hash);
 
   // keys.map((key) => [key, hash[key]]);
 
@@ -44,7 +44,5 @@ var topKFrequent = function(nums, k) {
 
   // return topK.map((bucket) => bucket[0]);
 
-  // return buckets.sort((a, b) => b[1] - a[1]).slice(0, k).map((bucket) => bucket[0]);
-
-  return keys.map((key) => [key, hash[key]]).sort((a, b) => b[1] - a[1]).slice(0, k).map((bucket) => bucket[0]);
+  return Object.keys(hash).map((key) => [key, hash[key]]).sort((a, b) => b[1] - a[1]).slice(0, k).map((bucket) => bucket[0]);
 };
