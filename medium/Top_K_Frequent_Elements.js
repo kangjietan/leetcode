@@ -23,7 +23,7 @@ Note:
  */
 var topKFrequent = function(nums, k) {
   let hash = {};
-  
+
   nums.forEach((num) => {
     if (!hash[num]) {
       hash[num] = 1;
@@ -34,7 +34,7 @@ var topKFrequent = function(nums, k) {
   
   let keys = Object.keys(hash);
 
-  keys.map((key) => [key, hash[key]]);
+  // keys.map((key) => [key, hash[key]]);
 
   // let buckets = keys.map((key) => [key, hash[key]]);
 
