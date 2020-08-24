@@ -21,28 +21,53 @@ Note:
  * @param {number} k
  * @return {number[]}
  */
-var topKFrequent = function(nums, k) {
+// var topKFrequent = function(nums, k) {
+//   let hash = {};
+
+//   nums.forEach((num) => {
+//     if (!hash[num]) {
+//       hash[num] = 1;
+//     } else {
+//       hash[num]++
+//     }
+//   });
+
+//   // let keys = Object.keys(hash);
+
+//   // keys.map((key) => [key, hash[key]]);
+
+//   // let buckets = keys.map((key) => [key, hash[key]]);
+
+//   // buckets.sort((a, b) => b[1] - a[1]);
+
+//   // let topK = buckets.slice(0, k);
+
+//   // return topK.map((bucket) => bucket[0]);
+
+//   return Object.keys(hash).map((key) => [key, hash[key]]).sort((a, b) => b[1] - a[1]).slice(0, k).map((bucket) => bucket[0]);
+// };
+
+var topKFrequent = function (nums, k) {
   let hash = {};
+  let buckets = [];
+  let result = [];
 
   nums.forEach((num) => {
     if (!hash[num]) {
       hash[num] = 1;
     } else {
-      hash[num]++
+      hash[num]++;
     }
   });
-  
-  // let keys = Object.keys(hash);
 
-  // keys.map((key) => [key, hash[key]]);
+  for (let key in hash) {
+    buckets[hash[key]] = (buckets[hash[key]] || new Set()).add(key);
+  }
 
-  // let buckets = keys.map((key) => [key, hash[key]]);
+  for (let i = buckets.length - 1; i >= 0; i--) {
+    if (buckets[i]) result.push(...buckets[i]);
+    if (result.length === k) return result;
+  }
 
-  // buckets.sort((a, b) => b[1] - a[1]);
-
-  // let topK = buckets.slice(0, k);
-
-  // return topK.map((bucket) => bucket[0]);
-
-  return Object.keys(hash).map((key) => [key, hash[key]]).sort((a, b) => b[1] - a[1]).slice(0, k).map((bucket) => bucket[0]);
+  return result;
 };
