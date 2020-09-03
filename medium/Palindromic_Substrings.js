@@ -16,3 +16,27 @@ Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
 Note:
 The input string length won't exceed 1000.
 */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countSubstrings = function (s) {
+  let count = 0;
+  if (s.length === 0) return 0;
+  for (let i = 0; i < s.length; i++) {
+    count += checkIfPalindrome(s, i, i);
+    count += checkIfPalindrome(s, i, i + 1);
+  }
+  return count;
+};
+
+function checkIfPalindrome(str, i, j) {
+  let count = 0;
+  while (i >= 0 && j < str.length && str[i] === str[j]) {
+    count++;
+    i--;
+    j++;
+  }
+  return count;
+}
