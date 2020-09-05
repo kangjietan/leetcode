@@ -21,5 +21,7 @@ var majorityElement = function(nums) {
 
   for (let i = 0; i < nums.length; i++) {
     if (hash[nums[i]] === undefined) hash[nums[i]] = 0;
+    hash[nums[i]]++;
+    if (hash[nums[i]] > nums.length / 2) return nums[i];
   }
 };
