@@ -21,16 +21,30 @@ Output: [["a"]]
  * @param {string[]} strs
  * @return {string[][]}
  */
-var groupAnagrams = function(strs) {
-  let groups = {};
-  
-  for (let i = 0; i < strs.length; i++) {
-    let string = strs[i].split("").sort().join("");
-    if (groups[string] === undefined) groups[string] = [];
-    groups[string].push(strs[i]);
+var groupAnagrams = function (strs) {
+  let mapping = {};
+  for (let str of strs) {
+    let charCount = new Array(26).fill(0);
+    for (let c of str) {
+      charCount[c.charCodeAt(0) - "a".charCodeAt(0)]++;
+    }
+    console.log(charTotal);
+    if (!mapping[charCount]) mapping[charCount] = [];
+    mapping[charCount].push(str);
   }
-
-  return Object.values(groups);
+  return Object.values(mapping);
 };
 
-groupAnagrams(["eat","tea","tan","ate","nat","bat"]);
+// var groupAnagrams = function(strs) {
+//   let groups = {};
+
+//   for (let i = 0; i < strs.length; i++) {
+//     let string = strs[i].split("").sort().join("");
+//     if (groups[string] === undefined) groups[string] = [];
+//     groups[string].push(strs[i]);
+//   }
+
+//   return Object.values(groups);
+// };
+
+groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]);
