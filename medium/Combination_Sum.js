@@ -40,18 +40,38 @@ Each element of candidate is unique.
  */
 var combinationSum = function (candidates, target) {
   const result = [];
-
-  function permute(arr = [], sum = 0, idx = 0) {
-    if (sum > target) return;
-    if (sum === target) result.push(arr);
-
-    for (let i = idx; i < candidates.length; i++) {
-      permute([...arr, candidates[i]], sum + candidates[i], i);
-    }
-  }
-  
-  permute();
+  backtrack(candidates, target, 0, [], result);
   return result;
 };
+
+function backtrack(candidates, target, start, sub, result) {
+  if (target < 0) return;
+  if (target === 0) {
+    result.push([...sub]);
+    return;
+  }
+
+  for (let i = start; i < candidates.length; i++) {
+    sub.push(candidates[i]);
+    backtrack(candidates, target - candidates[i], i, sub, result);
+    sub.pop();
+  }
+}
+
+// var combinationSum = function (candidates, target) {
+//   const result = [];
+
+//   function permute(arr = [], sum = 0, idx = 0) {
+//     if (sum > target) return;
+//     if (sum === target) result.push(arr);
+
+//     for (let i = idx; i < candidates.length; i++) {
+//       permute([...arr, candidates[i]], sum + candidates[i], i);
+//     }
+//   }
+  
+//   permute();
+//   return result;
+// };
 
 console.log("ANSWER", combinationSum([2, 3, 6, 7], 7));
