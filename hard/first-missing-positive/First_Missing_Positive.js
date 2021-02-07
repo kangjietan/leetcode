@@ -1,3 +1,4 @@
+"use strict";
 /**
 Given an unsorted integer array nums, find the smallest missing positive integer.
 
@@ -22,26 +23,24 @@ Constraints:
  * @return {number}
  */
 function firstMissingPositive(nums) {
-    var integersArr = [];
-    var positive = false;
-    for (var i = 0; i < nums.length; i++) {
-        var num = nums[i];
-        if (num >= 0) {
-            integersArr[num] = num;
-            positive = true;
-        }
+  let integersArr = [];
+  let positive = false;
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (num >= 0) {
+      integersArr[num] = num;
+      positive = true;
     }
-    // All negative ints
-    if (integersArr.length === 0)
-        return 1;
-    // All positive
-    for (var i = 1; i < integersArr.length; i++) {
-        if (integersArr[i] === undefined) {
-            return i;
-        }
+  }
+  for (let i = 1; i < integersArr.length; i++) {
+    if (integersArr[i] === undefined) {
+      return i;
     }
-    // Positive
-    if (positive) {
-        return integersArr.length;
-    }
+  }
+  // Positive
+  if (positive) {
+    return integersArr.length;
+  }
+  // All negative nums or empty arr
+  return 1;
 }

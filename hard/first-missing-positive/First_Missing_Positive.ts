@@ -33,10 +33,6 @@ function firstMissingPositive(nums: number[]): number {
     }
   }
 
-  // All negative ints
-  if (integersArr.length === 0) return 1;
-
-  // All positive
   for (let i = 1; i < integersArr.length; i++) {
     if (integersArr[i] === undefined) {
       return i;
@@ -47,4 +43,7 @@ function firstMissingPositive(nums: number[]): number {
   if (positive) {
     return integersArr.length;
   }
+
+  // All negative nums or empty arr
+  return 1;
 }
