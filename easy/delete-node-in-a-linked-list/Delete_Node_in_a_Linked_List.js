@@ -45,14 +45,13 @@ The node to be deleted is in the list and is not a tail node
  * @return {void} Do not return anything, modify node in-place instead.
  */
 class ListNode {
-    constructor(val, next) {
-        this.val = val === undefined ? 0 : val;
-        this.next = next === undefined ? null : next;
-    }
+  constructor(val, next) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
 }
 function deleteNode(root) {
-    if (root === null)
-        return;
-    root.val = root.next.val;
-    root.next = root.next.next;
+  if (root === null) return;
+  root.val = root.next.val;
+  root.next = root.next.next;
 }
