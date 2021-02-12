@@ -19,9 +19,7 @@ Output: ["h","a","n","n","a","H"]
  * @return {void} Do not return anything, modify s in-place instead.
  */
 function reverseString(s: string[]): void {
-  let len = s.length;
-  let middle = Math.floor(len / 2);
-  for (let i = 0; i < middle; i++) {
-    [s[i], s[len - i - 1]] = [s[len - i - 1], s[i]];
+  for (let i = 0; i < s.length / 2; i++) {
+    [s[i], s[s.length - i - 1]] = [s[s.length - i - 1], s[i]];
   }
 }
