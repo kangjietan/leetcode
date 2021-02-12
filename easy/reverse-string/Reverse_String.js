@@ -1,3 +1,4 @@
+"use strict";
 /*
 Write a function that reverses a string. The input string is given as an array of characters char[].
 
@@ -13,15 +14,14 @@ Example 2:
 Input: ["H","a","n","n","a","h"]
 Output: ["h","a","n","n","a","H"]
 */
-
 /**
  * @param {character[]} s
  * @return {void} Do not return anything, modify s in-place instead.
  */
-function reverseString(s: string[]): void {
-  let len = s.length;
-  let middle = Math.floor(len / 2);
-  for (let i = 0; i < middle; i++) {
-    [s[i], s[len - i - 1]] = [s[len - i - 1], s[i]];
-  }
+function reverseString(s) {
+    let len = s.length;
+    let middle = Math.floor(len / 2);
+    for (let i = 0; i < middle; i++) {
+        [s[i], s[len - i - 1]] = [s[len - i - 1], s[i]];
+    }
 }
