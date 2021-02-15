@@ -31,13 +31,11 @@ function isAnagram(s: string, t: string): boolean {
       count[char]++;
     }
   }
-  console.log(count);
   for (let i = 0; i < t.length; i++) {
     let char = t[i];
     if (!count[char] === undefined) return false;
     count[char]--;
     if (count[char] < 0) return false;
-    console.log(count);
   }
 
   let values = Object.values(count);
@@ -48,5 +46,3 @@ function isAnagram(s: string, t: string): boolean {
 
   return true;
 }
-
-console.log(isAnagram("aacc", "ccac"));
