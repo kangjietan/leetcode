@@ -18,28 +18,32 @@ You may assume the string contains only lowercase alphabets.
  * @return {boolean}
  */
 function isAnagram(s, t) {
-  // let original = s.split("").sort().join("");
-  // let copy = t.split("").sort().join("");
-  // return original === copy;
-  let count = {};
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i];
-    if (count[char] === undefined) {
-      count[char] = 1;
-    } else {
-      count[char]++;
+    // let original = s.split("").sort().join("");
+    // let copy = t.split("").sort().join("");
+    // return original === copy;
+    let count = {};
+    for (let i = 0; i < s.length; i++) {
+        let char = s[i];
+        if (count[char] === undefined) {
+            count[char] = 1;
+        }
+        else {
+            count[char]++;
+        }
     }
-  }
-  for (let i = 0; i < t.length; i++) {
-    let char = t[i];
-    if (!count[char] === undefined) return false;
-    count[char]--;
-    if (count[char] < 0) return false;
-  }
-  let values = Object.values(count);
-  for (let i = 0; i < values.length; i++) {
-    let val = values[i];
-    if (val !== 0) return false;
-  }
-  return true;
+    for (let i = 0; i < t.length; i++) {
+        let char = t[i];
+        if (!count[char] === undefined)
+            return false;
+        count[char]--;
+        if (count[char] < 0)
+            return false;
+    }
+    let values = Object.values(count);
+    for (let i = 0; i < values.length; i++) {
+        let val = values[i];
+        if (val !== 0)
+            return false;
+    }
+    return true;
 }

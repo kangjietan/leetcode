@@ -20,25 +20,26 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
  * Definition for a binary tree node.
  */
 class TreeNode {
-  constructor(val, left, right) {
-    this.val = val === undefined ? 0 : val;
-    this.left = left === undefined ? null : left;
-    this.right = right === undefined ? null : right;
-  }
+    constructor(val, left, right) {
+        this.val = val === undefined ? 0 : val;
+        this.left = left === undefined ? null : left;
+        this.right = right === undefined ? null : right;
+    }
 }
 /**
  * @param {number[]} nums
  * @return {TreeNode}
  */
 function sortedArrayToBST(nums) {
-  let head = helper(0, nums.length - 1, nums);
-  return head;
+    let head = helper(0, nums.length - 1, nums);
+    return head;
 }
 function helper(start, end, nums) {
-  if (start > end) return null;
-  let mid = Math.floor((start + end) / 2);
-  const root = new TreeNode(nums[mid]);
-  root.left = helper(start, mid - 1, nums);
-  root.right = helper(mid + 1, end, nums);
-  return root;
+    if (start > end)
+        return null;
+    let mid = Math.floor((start + end) / 2);
+    const root = new TreeNode(nums[mid]);
+    root.left = helper(start, mid - 1, nums);
+    root.right = helper(mid + 1, end, nums);
+    return root;
 }

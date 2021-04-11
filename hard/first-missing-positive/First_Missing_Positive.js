@@ -23,24 +23,24 @@ Constraints:
  * @return {number}
  */
 function firstMissingPositive(nums) {
-  let integersArr = [];
-  let positive = false;
-  for (let i = 0; i < nums.length; i++) {
-    let num = nums[i];
-    if (num >= 0) {
-      integersArr[num] = num;
-      positive = true;
+    let integersArr = [];
+    let positive = false;
+    for (let i = 0; i < nums.length; i++) {
+        let num = nums[i];
+        if (num >= 0) {
+            integersArr[num] = num;
+            positive = true;
+        }
     }
-  }
-  for (let i = 1; i < integersArr.length; i++) {
-    if (integersArr[i] === undefined) {
-      return i;
+    for (let i = 1; i < integersArr.length; i++) {
+        if (integersArr[i] === undefined) {
+            return i;
+        }
     }
-  }
-  // Positive
-  if (positive) {
-    return integersArr.length;
-  }
-  // All negative nums or empty arr
-  return 1;
+    // Positive
+    if (positive) {
+        return integersArr.length;
+    }
+    // All negative nums or empty arr
+    return 1;
 }
