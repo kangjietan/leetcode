@@ -49,3 +49,39 @@ function findDuplicate(nums) {
     }
     return duplicate;
 }
+function findDuplicate2(nums) {
+    // let hash: { [key: string]: number } = {};
+    let hash = {};
+    let duplicate = -1;
+    for (let i = 0; i < nums.length; i++) {
+        let number = nums[i];
+        if (hash[number] === undefined) {
+            hash[number] = 1;
+        }
+        else {
+            hash[number]++;
+        }
+        if (hash[number] > 1) {
+            duplicate = number;
+            break;
+        }
+    }
+    return duplicate;
+}
+function findDuplicate3(nums) {
+    let duplicate = -1;
+    for (let i = 0; i < nums.length; i++) {
+        let num = nums[i];
+        let idx = Math.abs(num);
+        if (nums[idx - 1] >= 0) {
+            nums[idx - 1] = nums[idx - 1] * -1;
+        }
+        else {
+            duplicate = idx;
+            break;
+        }
+    }
+    return duplicate;
+}
+// Tortoise and Hare implementation
+function findDuplicate4(nums) { }
