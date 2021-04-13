@@ -14,5 +14,9 @@ let folderPath = path.join(__dirname, `./${difficulty}`);
 
 let directory = folderPath + "/" + folderName;
 
-const output = execSync(`node ${directory}/${problemName}`, { encoding: 'utf-8' });
+const output = execSync(`node ${directory}/${problemName}`, {
+  encoding: "utf-8",
+});
+console.log(`\n Run nodemon ${difficulty}/${problemName} \n`);
+console.log("Output:");
 console.log(output);
