@@ -68,6 +68,7 @@ function findDuplicate2(nums) {
     }
     return duplicate;
 }
+/** Mutable array */
 function findDuplicate3(nums) {
     let duplicate = -1;
     for (let i = 0; i < nums.length; i++) {
@@ -83,5 +84,18 @@ function findDuplicate3(nums) {
     }
     return duplicate;
 }
-// Tortoise and Hare implementation
-function findDuplicate4(nums) { }
+/** Tortoise and Hare implementation*/
+function findDuplicate4(nums) {
+    let slow = nums[0];
+    let fast = nums[nums[0]];
+    while (slow !== fast) {
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+    }
+    fast = 0;
+    while (slow !== fast) {
+        slow = nums[slow];
+        fast = nums[fast];
+    }
+    return slow;
+}
