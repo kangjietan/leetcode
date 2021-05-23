@@ -42,9 +42,9 @@ columnTitle is in the range ["A", "FXSHRXW"].
  */
 
 function titleToNumber(columnTitle: string): number {
-  let total = 0
+  let total = 0;
   for (let i = 0; i < columnTitle.length; i += 1) {
-    total = total * 26 + columnTitle.charCodeAt(i) - "A".charCodeAt(0) + 1
+    total = total * 26 + columnTitle.charCodeAt(i) - "A".charCodeAt(0) + 1;
   }
-  return total
+  return total;
 }
