@@ -16,9 +16,22 @@ S will have length in range [1, 500].
 S will consist of lowercase English letters ('a' to 'z') only.
  */
 /**
-* @param {string} S
-* @return {number[]}
-*/
-function partitionLabels(S) {
+ * @param {string} S
+ * @return {number[]}
+ */
+function partitionLabels(s) {
+    let result = [];
+    const lastOccurrence = new Array(26);
+    for (let i = 0; i < s.length; i++) {
+        lastOccurrence[s[i].charCodeAt(0) - "a".charCodeAt(0)] = i;
+    }
+    let start = 0, end = 0;
+    for (let i = 0; i < s.length; i++) {
+        end = Math.max(end, lastOccurrence[s[i].charCodeAt(0) - "a".charCodeAt(0)]);
+        if (end === i) {
+            result.push(end - start + 1);
+            start = end + 1;
+        }
+    }
+    return result;
 }
-;

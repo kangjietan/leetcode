@@ -34,36 +34,94 @@ In this question, we represent the board using a 2D array. In principle, the boa
  * @param {number[][]} board
  * @return {void} Do not return anything, modify board in-place instead.
  */
-// function gameOfLife(board: number[][]): void {
-//   const newBoard: number[][] = board.map(() => []);
-//   for (let i = 0; i < board.length; i++) {
-//     const row = board[i];
-//     for (let j = 0; j < row.length; j++) {
-//       const status = checkCells(board, i, j);
-//       newBoard[i].push(status);
-//     }
-//   }
-// }
-// function checkCells(board: number[][], row: number, col: number): number {
-//   let total = 0;
-//   const current = board[row][col];
-//   const left = board[row][col - 1] ? board[row][col - 1] : 0;
-//   const right = board[row][col + 1] ? board[row][col + 1] : 0;
-//   let topRow = board[row - 1];
-//   let bottomRow = board[row + 1];
-//   if (topRow !== undefined) {
-//     total += topRow[col - 1] ? topRow[col - 1] : 0;
-//     total += topRow[col] ? topRow[col] : 0;
-//     total += topRow[col + 1] ? topRow[col + 1] : 0;
-//   }
-//   if (bottomRow !== undefined) {
-//     total += bottomRow[col - 1] ? bottomRow[col - 1] : 0;
-//     total += bottomRow[col] ? bottomRow[col] : 0;
-//     total += bottomRow[col + 1] ? bottomRow[col + 1] : 0;
-//   }
-//   total += left + right;
-//   if (total < 2) return 0;
-//   if (total === 2) return current;
-//   if (total === 3) return 1;
-//   if (total > 3) return 0;
-// }
+// In place solution
+function gameOfLife(board) {
+    var checkNeighbors = function (currentRow, currentColumn) {
+        let aliveCells = 0;
+        directions.forEach((direction) => {
+            if (board[currentRow + direction[0]] !== undefined) {
+                let neighbor = board[currentRow + direction[0]][currentColumn + direction[1]];
+                if (neighbor !== undefined) {
+                    aliveCells += Math.ceil(neighbor);
+                }
+            }
+        });
+        return aliveCells;
+    };
+    let directions = [
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, 1],
+        [1, 1],
+        [1, 0],
+        [1, -1],
+        [0, -1],
+    ];
+    // If cell is dead and will come back alive, set state to -0.5.     Math.ceil(-0.5) = -0
+    // If cell is alive and dies, set state to 0.5.                     Math.ceil(0.5) = 1
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            let state = checkNeighbors(i, j);
+            if (board[i][j] === 0) {
+                if (state === 3) {
+                    board[i][j] = -0.5;
+                }
+            }
+            else {
+                if (state < 2 || state > 3) {
+                    board[i][j] = 0.5;
+                }
+            }
+        }
+    }
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] !== 0 && board[i][j] !== 1) {
+                board[i][j] = Math.abs(board[i][j] - 0.5);
+            }
+        }
+    }
+}
+// Extra memory
+function gameOfLife2(board) {
+    const newBoard = board.map(() => []);
+    for (let i = 0; i < board.length; i++) {
+        const row = board[i];
+        for (let j = 0; j < row.length; j++) {
+            const status = checkCells(board, i, j);
+            newBoard[i].push(status);
+        }
+    }
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            board[i][j] = newBoard[i][j];
+        }
+    }
+}
+function checkCells(board, row, col) {
+    let total = 0;
+    const current = board[row][col];
+    const left = board[row][col - 1] ? board[row][col - 1] : 0;
+    const right = board[row][col + 1] ? board[row][col + 1] : 0;
+    let topRow = board[row - 1];
+    let bottomRow = board[row + 1];
+    if (topRow !== undefined) {
+        total += topRow[col - 1] ? topRow[col - 1] : 0;
+        total += topRow[col] ? topRow[col] : 0;
+        total += topRow[col + 1] ? topRow[col + 1] : 0;
+    }
+    if (bottomRow !== undefined) {
+        total += bottomRow[col - 1] ? bottomRow[col - 1] : 0;
+        total += bottomRow[col] ? bottomRow[col] : 0;
+        total += bottomRow[col + 1] ? bottomRow[col + 1] : 0;
+    }
+    total += left + right;
+    if (total < 2)
+        return 0;
+    if (total === 3)
+        return 1;
+    if (total > 3)
+        return 0;
+    return current;
+}
