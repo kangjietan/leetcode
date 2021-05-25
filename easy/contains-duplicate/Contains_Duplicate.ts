@@ -27,7 +27,7 @@ Constraints:
 function containsDuplicate(nums: number[]): boolean {
   let hash: { [key: string]: number } = {};
 
-  for (let i = 0; i > nums.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     if (hash[nums[i]] === undefined) {
       hash[nums[i]] = 1;
     } else {
