@@ -35,7 +35,7 @@ All the numbers of nums are unique.
  * @return {number}
  */
 function missingNumber(nums: number[]): number {
-  const inOrder = [];
+  const inOrder = new Array(nums.length);
   for (let i = 0; i < nums.length; i++) {
     inOrder[nums[i]] = nums[i];
   }
