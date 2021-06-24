@@ -51,11 +51,23 @@ function twoSum2(nums, target) {
     for (let i = 0; i < nums.length; i++) {
         indexes[nums[i]] = i;
     }
-    console.log(indexes);
     for (let i = 0; i < nums.length; i++) {
         if (indexes[target - nums[i]] && i !== indexes[target - nums[i]]) {
             return [i, indexes[target - nums[i]]];
         }
+    }
+    return [];
+}
+/**
+ * Linear one pass
+ */
+function twoSum3(nums, target) {
+    let indexes = [];
+    for (let i = 0; i < nums.length; i++) {
+        const difference = target - nums[i];
+        if (indexes[difference] !== undefined)
+            return [i, indexes[difference]];
+        indexes[nums[i]] = i;
     }
     return [];
 }
