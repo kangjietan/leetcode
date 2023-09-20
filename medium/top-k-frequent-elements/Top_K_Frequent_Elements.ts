@@ -33,3 +33,28 @@ function topKFrequent(nums: number[], k: number): number[] {
 
   return res;
 }
+
+function topKFrequent2(nums: number[], k: number): number[] {
+  const hash: { [key: string]: number } = {};
+  const buckets: Set<number>[] = [];
+  let result = [];
+
+  nums.forEach((num) => {
+    if (!hash[num]) {
+      hash[num] = 1;
+    } else {
+      hash[num]++;
+    }
+  });
+
+  for (let key in hash) {
+    buckets[hash[key]] = (buckets[hash[key]] || new Set()).add(Number(key));
+  }
+
+  for (let i = buckets.length - 1; i >= 0; i--) {
+    if (buckets[i]) result.push(...buckets[i]);
+    if (result.length === k) return result;
+  }
+
+  return result;
+}

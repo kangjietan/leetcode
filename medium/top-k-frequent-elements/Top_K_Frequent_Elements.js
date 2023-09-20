@@ -31,3 +31,23 @@ function topKFrequent(nums, k) {
   }
   return res;
 }
+function topKFrequent2(nums, k) {
+  var hash = {};
+  var buckets = [];
+  var result = [];
+  nums.forEach(function (num) {
+    if (!hash[num]) {
+      hash[num] = 1;
+    } else {
+      hash[num]++;
+    }
+  });
+  for (var key in hash) {
+    buckets[hash[key]] = (buckets[hash[key]] || new Set()).add(Number(key));
+  }
+  for (var i = buckets.length - 1; i >= 0; i--) {
+    if (buckets[i]) result.push.apply(result, buckets[i]);
+    if (result.length === k) return result;
+  }
+  return result;
+}
