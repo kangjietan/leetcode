@@ -6,22 +6,20 @@ width = index[rightPointer] - index[curr]
 height = Math.min(index[rightPointer], index[curr])
 maxArea = Math.max(currArea, maxArea)
  */
-function maxArea(height: number[]): number {
-  let maxArea = 0;
-  let i = 0;
-  let j = height.length - 1;
+function maxArea(height) {
+  var maxArea = 0;
+  var i = 0;
+  var j = height.length - 1;
   while (i < j) {
-    const width = j - i;
-    const currHeight = Math.min(height[i], height[j]);
+    var width = j - i;
+    var currHeight = Math.min(height[i], height[j]);
     maxArea = Math.max(maxArea, width * currHeight);
-
     if (height[i] <= height[j]) {
       i++;
     } else {
       j--;
     }
   }
-
   return maxArea;
 }
 // function maxArea(height: number[]): number {
